@@ -1,10 +1,16 @@
-import { addDoc, getDoc, collection } from 'firebase/firestore';
-import { FIREBASE_DATABASE } from '../firebaseConfig';
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "../firebaseConfig";
+import { addDoc, collection, startAfter, query, limit, orderBy, getFirestore, getDocs } from 'firebase/firestore';
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 export const addTranslation = async (data: any) => {
-    addDoc(collection(FIREBASE_DATABASE, 'translations'), data)
+    addDoc(collection(db, 'translations'), data)
 };
 
-export const getTranslation = async (id: string) => {
+export const getTranslation = async (lastDoc = 0) => {
+    const requestQuery = await query(collection(db, 'translations'), orderBy('title'), startAfter(lastDoc), limit(1))
     
+    return (await getDocs(requestQuery)).docs[0];
 }

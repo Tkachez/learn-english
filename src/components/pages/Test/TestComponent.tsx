@@ -1,11 +1,34 @@
 import React from "react"
 import { View, Button, Text } from "react-native"
 
-const TestComponent = () => {
-    const [testStarted, setTestStarted] = React.useState<boolean>(false)
+import { getTranslation } from "../../../../api"
 
-    const handleStartTest = () => {
+const TestComponent = () => {
+    const [lastDoc, setLastDoc] = React.useState<any>(null)
+    const [testStarted, setTestStarted] = React.useState<boolean>(false)
+    const [title, setTitle] = React.useState<string>('')
+    const [translation, setTranslation] = React.useState<string>('')
+    const [testIndex, setTestIndex] = React.useState<number>(1)
+    const [translationVisible, setTranslationVisible] = React.useState<boolean>(false)
+
+    const handleStartTest = async () => {
         setTestStarted(true)
+        showNextTranslation()
+    }
+
+    const showNextTranslation = async () => {
+        const result = await getTranslation(lastDoc || 0)
+        const {title, translation} = result.data()
+        
+        setLastDoc(result)
+        setTestIndex(testIndex + 1)
+        setTitle(title)
+        setTranslation(translation)
+        setTranslationVisible(false)
+    }
+
+    const showTrsndlation = () => {
+        setTranslationVisible(true)
     }
     
     return (
@@ -13,7 +36,17 @@ const TestComponent = () => {
             {!testStarted
              ? (<Button onPress={handleStartTest} title="Start test"></Button>)
              : (
-                <Text>Test started</Text>
+                <View style={{display: 'flex', alignItems: 'center'}}>
+                    <Text>{title}</Text>
+                    {!translationVisible 
+                    ? <Button onPress={showTrsndlation} title="Show translation"></Button>
+                    : (
+                        <View style={{display: 'flex', alignItems: 'center'}}>
+                            <Text>{translation}</Text>
+                            <Button onPress={showNextTranslation} title="Continue"></Button>
+                        </View>
+                    )}
+                </View>
              )}
         </View>
     )
