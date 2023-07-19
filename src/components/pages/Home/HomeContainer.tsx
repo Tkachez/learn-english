@@ -1,8 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import type { AnyAction } from 'redux'
-import type { ThunkDispatch } from 'redux-thunk'
 import type { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native'
 
 import { addTranslation, setInputData } from '../../../redux/reducers/translationsReducer'
@@ -10,12 +8,11 @@ import { addTranslation, setInputData } from '../../../redux/reducers/translatio
 import HomeComponent from './HomeComponent'
 
 import type { HomeContainerProps } from './types'
-import type { RootState } from '../../../redux'
+import type { RootState, AppDispatch } from '../../../redux'
 
-type ActionDispatch = ThunkDispatch<RootState, any, AnyAction>
 
 const HomeContainer = ({ navigation }: HomeContainerProps) => {
-	const dispatch: ActionDispatch = useDispatch()
+	const dispatch: AppDispatch = useDispatch()
 
 	const inputData = useSelector((store: RootState) => store.translations.inputData)
 

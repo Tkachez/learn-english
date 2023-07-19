@@ -2,10 +2,7 @@ import * as React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { ActivityIndicator, View } from 'react-native'
 
-import type { AnyAction } from 'redux'
-import type { ThunkDispatch } from 'redux-thunk'
-
-import type { RootState } from '../../../redux'
+import type { RootState, AppDispatch } from '../../../redux'
 
 import { 
 	getTranslation,
@@ -18,10 +15,8 @@ import {
 
 import TestComponent from './TestComponent'
 
-type ActionDispatch = ThunkDispatch<any, any, AnyAction>
-
 const TestContainer = () => {
-	const dispatch: ActionDispatch = useDispatch()
+	const dispatch: AppDispatch = useDispatch()
 
 	const translationVisible = useSelector((store: RootState) => store.translations.translationVisible)
 	const totalTranslations = useSelector((store: RootState) => store.translations.totalTranslations)
