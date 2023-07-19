@@ -5,6 +5,8 @@ import { ActivityIndicator, View } from 'react-native'
 import type { AnyAction } from 'redux'
 import type { ThunkDispatch } from 'redux-thunk'
 
+import type { RootState } from '../../../redux'
+
 import { 
 	getTranslation,
 	setTestStarted,
@@ -21,11 +23,11 @@ type ActionDispatch = ThunkDispatch<any, any, AnyAction>
 const TestContainer = () => {
 	const dispatch: ActionDispatch = useDispatch()
 
-	const translationVisible = useSelector((store) => store.translations.translationVisible)
-	const totalTranslations = useSelector((store) => store.translations.totalTranslations)
-	const translation = useSelector((store) => store.translations.translation)
-	const testStarted = useSelector((store) => store.translations.testStarted)
-	const loading = useSelector((store) => store.translations.loading)
+	const translationVisible = useSelector((store: RootState) => store.translations.translationVisible)
+	const totalTranslations = useSelector((store: RootState) => store.translations.totalTranslations)
+	const translation = useSelector((store: RootState) => store.translations.translation)
+	const testStarted = useSelector((store: RootState) => store.translations.testStarted)
+	const loading = useSelector((store: RootState) => store.translations.loading)
     
 	const handleStartTest = async () => {
 		dispatch(setTestStarted(true))

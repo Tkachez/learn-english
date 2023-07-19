@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
-    flexContainer: {
-        display: 'flex',
-        alignItems: 'center'
-    }
-});
+	flexContainer: {
+		display: 'flex',
+		alignItems: 'center'
+	}
+})

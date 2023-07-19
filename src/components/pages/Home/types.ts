@@ -1,4 +1,4 @@
-import type { ChangeEvent } from "react"
+import type { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native'
 
 import type { Translation } from "../../../redux/reducers/translationsReducer";
 
@@ -7,8 +7,8 @@ export type HomeContainerProps = {
 }
 
 export type HomeComponentProps = {
-    handleTranslationChange: (event: ChangeEvent) => void;
-    handleTitleChange: (event: ChangeEvent) => void,
+    handleTranslationChange: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void;
+    handleTitleChange: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void,
     handleNavigate: () => void,
     handleItemAdd: () => void,
     inputData: Translation,

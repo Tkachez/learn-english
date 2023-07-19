@@ -1,5 +1,9 @@
 import { TranslationsApi } from '../../api/translationsApi'
 
+import type { Dispatch } from 'redux';
+
+import type { RootState } from '..';
+
 const SET_INPUT_DATA = 'SET_INPUT_DATA'
 const SET_ERROR = 'SET_ERROR'; 
 const SET_LOADING = 'SET_LOADING'; 
@@ -139,7 +143,7 @@ export const setError = (error: string) => ({
     error,
 })
 
-export const addTranslation = () => (dispatch, getState) => {
+export const addTranslation = () => (dispatch: Dispatch, getState: () => RootState) => {
     const { 
         translations: { 
             inputData: {
@@ -152,7 +156,7 @@ export const addTranslation = () => (dispatch, getState) => {
     TranslationsApi.addTranslation({title, translation})
 }
 
-export const getTotalTranslations = () => (dispatch) => {
+export const getTotalTranslations = () => (dispatch: Dispatch) => {
     dispatch(setLoading(true))
     
     TranslationsApi.getTotalTranslations()
@@ -167,7 +171,7 @@ export const getTotalTranslations = () => (dispatch) => {
         })
 }
 
-export const getTranslation = () => (dispatch, getState) => {
+export const getTranslation = () => (dispatch: Dispatch, getState: () => RootState) => {
     dispatch(setLoading(true))
     const { 
         translations: { 
