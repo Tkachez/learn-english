@@ -1,4 +1,3 @@
-import { Text, TextInput, StyleSheet, Button, View } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux';
 
 import type { AnyAction } from "redux";
@@ -8,9 +7,11 @@ import { addTranslation, setInputData } from '../../../redux/reducers/translatio
 
 import HomeComponent from './HomeComponent';
 
+import type { HomeContainerProps } from './types';
+
 type ActionDispatch = ThunkDispatch<any, any, AnyAction>
 
-const HomeContainer = ({ navigation }) => {
+const HomeContainer = ({ navigation }: HomeContainerProps) => {
     const dispatch: ActionDispatch = useDispatch();
 
     const inputData = useSelector((store) => store.translations.inputData)
@@ -19,7 +20,7 @@ const HomeContainer = ({ navigation }) => {
         navigation.navigate('Test')
     }
 
-    const handleTitleChange = (event, text: string) => {
+    const handleTitleChange = (event) => {
         const value = event.nativeEvent.text
 
         dispatch(setInputData({
@@ -28,7 +29,7 @@ const HomeContainer = ({ navigation }) => {
         }))
     }
 
-    const handleTranslationChange = (event, text: string) => {
+    const handleTranslationChange = (event) => {
         const value = event.nativeEvent.text
         
         dispatch(setInputData({

@@ -1,5 +1,9 @@
 import { View, Text, Button } from 'react-native'
 
+import { styles } from './styles'
+
+import type { TestComponentProps } from './types'
+
 const TestComponent = ({
     testStarted,
     translation,
@@ -7,14 +11,14 @@ const TestComponent = ({
     translationVisible,
     showNextTranslation,
     handleTranslationVisible,
-}: any ) => testStarted && translation
+}: TestComponentProps ) => testStarted && translation
     ? (
-        <View style={{display: 'flex', alignItems: 'center'}}>
+        <View style={styles.flexContainer}>
             <Text>{translation.title}</Text>
             {!translationVisible 
                 ? <Button onPress={handleTranslationVisible} title="Show translation"></Button>
                 : (
-                    <View style={{display: 'flex', alignItems: 'center'}}>
+                    <View style={styles.flexContainer}>
                         <Text>{translation.translation}</Text>
                         <Button onPress={showNextTranslation} title="Continue"></Button>
                     </View>
