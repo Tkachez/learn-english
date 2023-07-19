@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, TextInput, StyleSheet, Button, View } from 'react-native'
 
-import { addTranslation } from '../../../../api'
+import { TranslationsApi } from '../../../api'
 
 const HomeComponent = ({ navigation }) => {
     const [title, setTitle] = React.useState<string>('')
@@ -18,7 +18,7 @@ const HomeComponent = ({ navigation }) => {
     }
 
     const handleItemAdd = () => {
-        addTranslation({title, translation})
+        TranslationsApi.addTranslation({title, translation})
         setTitle('')
         setTranslation('')
     }

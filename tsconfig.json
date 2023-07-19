@@ -5,7 +5,7 @@
     "target": "es2015",
     "paths": {
       "pages": ["./src/components/pages/*"],
-      "api": ["./api/*"],
+      "api": ["src/api/*"],
     }
   },
   "extends": "expo/tsconfig.base",
