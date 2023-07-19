@@ -3,10 +3,6 @@
     "strict": true,
     "baseUrl": ".",
     "target": "es2015",
-    "paths": {
-      "pages": ["./src/components/pages/*"],
-      "api": ["src/api/*"],
-    }
   },
   "extends": "expo/tsconfig.base",
   "exclude": ["node_modules"]

@@ -1,42 +1,23 @@
 import React from 'react'
 import { Text, TextInput, StyleSheet, Button, View } from 'react-native'
 
-import { TranslationsApi } from '../../../api'
-
-const HomeComponent = ({ navigation }) => {
-    const [title, setTitle] = React.useState<string>('')
-    const [translation, setTranslation] = React.useState<string>('')
-
-    const handleTitleChange = (event, text: string) => {
-        const value = event.nativeEvent.text
-        setTitle(value)
-    }
-
-    const handleTranslationChange = (event, text: string) => {
-        const value = event.nativeEvent.text
-        setTranslation(value)
-    }
-
-    const handleItemAdd = () => {
-        TranslationsApi.addTranslation({title, translation})
-        setTitle('')
-        setTranslation('')
-    }
-
-    return (
-        <View >
-            <View>
-                <Button onPress={() => navigation.navigate('Test')} title='Go to test'/>
-            </View>
-            <View style={styles.wrapper}>
-                <Text style={styles.title}>You can add any word or phrase with a translation to test yourself</Text>
-                <TextInput style={styles.input} value={title} onChange={handleTitleChange} placeholder="Type a word or a phrase"/>
-                <TextInput style={styles.input} value={translation} onChange={handleTranslationChange} placeholder="Type its translation"/>
-                <Button onPress={handleItemAdd} title='Submit'/>
-            </View>
+const HomeComponent = ({ 
+    handleTranslationChange,
+    handleTitleChange,
+    handleNavigate,
+    handleItemAdd,
+    inputData,
+ } : any) => (
+    <View >
+        <Button onPress={handleNavigate} title='Go to test'/>
+        <View style={styles.wrapper}>
+            <Text style={styles.title}>You can add any word or phrase with a translation to test yourself</Text>
+            <TextInput style={styles.input} value={inputData.title} onChange={handleTitleChange} placeholder="Type a word or a phrase"/>
+            <TextInput style={styles.input} value={inputData.translation} onChange={handleTranslationChange} placeholder="Type its translation"/>
+            <Button onPress={handleItemAdd} title='Submit'/>
         </View>
-    )
-}
+    </View>
+)
 
 const styles = StyleSheet.create({
     wrapper: {
