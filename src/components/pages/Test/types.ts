@@ -1,4 +1,4 @@
-import type { Translation } from "src/redux/reducers/translationsReducer";
+import type { Translation } from "../../../redux/reducers/translationsReducer";
 
 export type TestComponentProps = {
     testStarted: boolean;
